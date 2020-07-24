@@ -1,21 +1,127 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
 <router-outlet></router-outlet>
+<div class="container">
+  <h1 class="text-center topheader">Critical Illness Insurance Calculator</h1>
+  <p class="text-center topHeader2">Adjust the slider to estimate the coverage amount you may need</p>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div>
+        <mat-label class="label">Desired replacement income(after-tax)<i class="fa fa-info-circle iconColor"
+            aria-hidden="true"></i>
+        </mat-label>
+        <div>
+          <input matInput
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="number" maxlength="4" [(ngModel)]="value" class="inputBox" (keyup)="checkValue($event)">
+          <span class="displayMonth">/month</span>
+          <mat-slider class="example-margin min" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min"
+            [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="tickInterval" [(ngModel)]="value"
+            [vertical]="vertical" (change)="onSliderChange($event)">
+          </mat-slider>
+        </div>
+      </div>
+      <div>
+        <mat-label class="label">Out-of-pocket healthcare expenses<i class="fa fa-info-circle iconColor"
+            aria-hidden="true"></i></mat-label>
+        <div>
+          <input matInput
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="number" maxlength="4" [(ngModel)]="value2" class="inputBox" (keyup)="checkValue2($event)">
+          <mat-slider class="example-margin min" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min"
+            [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="tickInterval2" [(ngModel)]="value2"
+            [vertical]="vertical" (change)="onSliderChange2($event)">
+          </mat-slider>
+        </div>
+      </div>
+      <div>
+        <mat-label class="label">Home modification expenses<i class="fa fa-info-circle iconColor"
+            aria-hidden="true"></i></mat-label>
+        <div>
+          <input matInput
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="number" maxlength="4" [(ngModel)]="value3" class="inputBox" (keyup)="checkValue3($event)">
+          <mat-slider class="example-margin min" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min"
+            [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="tickInterval3" [(ngModel)]="value3"
+            [vertical]="vertical" (change)="onSliderChange3($event)">
+          </mat-slider>
+        </div>
+      </div>
+      <div>
+        <mat-label class="label">Medical homecare expenses<i class="fa fa-info-circle iconColor" aria-hidden="true"></i>
+        </mat-label>
+        <div>
+          <input matInput
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="number" maxlength="4" [(ngModel)]="value4" class="inputBox" placeholder="/month"
+            (keyup)="checkValue4($event)">
+          <span class="displayMonth">/month</span>
+          <mat-slider class="example-margin min" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min"
+            [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="tickInterval4" [(ngModel)]="value4"
+            [vertical]="vertical" (change)="onSliderChange4($event)">
+          </mat-slider>
+        </div>
+      </div>
+      <div>
+        <mat-label class="label">Other expenses(transport, childcare, etc)<i class="fa fa-info-circle iconColor"
+            aria-hidden="true"></i></mat-label>
+        <div>
+          <input matInput type="number"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            [(ngModel)]="value5" maxlength="4" class="inputBox" placeholder="/month" (keyup)="checkValue5($event)">
+          <span class="displayMonth">/month</span>
+          <mat-slider class="example-margin min" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min"
+            [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="value5"
+            [vertical]="vertical" (change)="onSliderChange5($event)">
+          </mat-slider>
+        </div>
+      </div>
+
+      <div>
+        <mat-label class="label additonalInfo">Additional Info </mat-label>
+        <i class="fa fa-plus-square-o iconColor addIcon" aria-hidden="true" (click)="addInfo()"></i>
+        <div *ngIf="displayAddInfo">
+          <mat-form-field class="example-full-width">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Enter Additional Information"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body row">
+
+          <mat-label class="labelCard col-sm-4"><img src="/assets/refreshadd.PNG" alt="" class="recoveryAddImg">
+            Recovery Period <i class="fa fa-info-circle iconColor" aria-hidden="true"></i>
+          </mat-label>
+
+          <input class="inputBox2 col-sm-4" matInput type="number" [(ngModel)]="value6" placeholder="months">
+
+          <div class="col-sm-4">
+
+          </div>
+          <mat-slider class="example-margin min col-sm-4" [disabled]="disabled" [invert]="invert" [max]="max1"
+            [min]="min1" [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()"
+            [(ngModel)]="value6" [vertical]="vertical" (change)="onSliderChange6($event)">
+          </mat-slider>
+        </div>
+      </div>
+      <div style="display: block; margin-top: 44px;">
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+          [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors">
+        </canvas>
+      </div>
+      <div>
+        <p class="statement">A Serious Illness with recovery lasting <span class="amountColor">{{value6}}</span> Months
+          could put your
+          finances down by
+          <span class="amountColor">${{todayCost}}</span> today
+          and by <span class="amountColor">${{totatTenCost}}</span> in 10 years</p>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary btnColor">START COMPARING QUOTES</button>
+      </div>
+    </div>
+  </div>
+</div>
